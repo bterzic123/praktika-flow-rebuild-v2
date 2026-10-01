@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Growth Audit — Praktika</title>
+<link rel="icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rubik:wght@800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: only light;
+  /* ---- Praktika, extracted from their current App Store screens and praktika.ai mockups ---- */
+  --pk-bg:#FFFFFF; --pk-card:#F3F3F5; --pk-card2:#ECECEF; --pk-line:#E7E7EB;
+  --pk-purple:#7429FF; --pk-purple-d:#5E17E6; --pk-lilac:#EFE6FF; --pk-lilac-ink:#6A22F0;
+  --pk-ink:#111114; --pk-txt:#3C3C43; --pk-muted:#8A8A93;
+  --pk-green:#2CC36B; --pk-amber:#F59E0B; --pk-orange:#FF6A1A;
+  --r-ctl:18px; --r-media:22px;
+  /* ---- the report shell, in Praktika's own palette ---- */
+  --bg:#F6F5FA; --bg2:#FFFFFF; --surf:#FFFFFF;
+  --hair:rgba(17,17,20,.08); --hair2:rgba(17,17,20,.14);
+  --ink:#111114; --ink2:#4A4A55; --ink3:#8A8A96;
+  --accent:#7429FF; --accent-lift:#6420E8;
+  --panel:#FFFFFF; --panel-ink:#121216; --panel-muted:#62626E; --panel-line:#EAEAF0;
+  --accent-ink:#5B17D6;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+@media(max-width:700px){.wrap{padding:0 20px}}
+
+/* ============ top bar ============ */
+.nav{position:sticky;top:0;z-index:70;background:rgba(246,245,250,.86);backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--hair)}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 32px;height:58px;display:flex;align-items:center;gap:18px}
+@media(max-width:700px){.nav-in{padding:0 20px;gap:12px}}
+.nav-brand{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.nav-brand .mk{width:26px;height:26px;flex:none;display:block}
+.nav-brand .mk img{width:26px;height:26px;display:block}
+.nav-brand span{color:var(--ink2);font-weight:500}
+.nav-brand b{color:var(--ink);font-weight:600}
+.nav-links{margin-left:auto;display:flex;gap:2px;align-items:center}
+.nav-links button{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink3);transition:.16s}
+.nav-links button:hover{color:var(--ink)}
+.nav-links button.on{color:var(--ink);background:#fff;box-shadow:0 1px 4px rgba(17,17,20,.08)}
+@media(max-width:640px){.nav-brand span{display:none}}
+.view{display:none}
+.view.on{display:block}
+
+/* ============ hero ============ */
+.hero{padding:104px 0 0;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-340px;left:50%;transform:translateX(-50%);width:1100px;height:640px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(116,41,255,.17),transparent 72%)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(40% 50% at 8% 20%,rgba(146,80,255,.16),transparent 70%),radial-gradient(38% 45% at 92% 18%,rgba(255,106,26,.14),transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-lift);margin-bottom:26px}
+.hero h1{font-size:76px;line-height:.98;font-weight:700;letter-spacing:-.045em;margin:0 0 24px}
+@media(max-width:820px){.hero h1{font-size:50px}.hero{padding-top:70px}}
+.hero .lede{font-size:20px;line-height:1.5;font-weight:400;color:var(--ink2);max-width:600px;margin:0 auto;letter-spacing:-.012em}
+@media(max-width:820px){.hero .lede{font-size:17px}}
+.hero .meta{margin-top:30px;font-size:12.5px;color:var(--ink3);letter-spacing:.02em}
+.hero .meta b{color:var(--ink2);font-weight:600}
+.stats{display:flex;justify-content:center;margin:70px auto 0;max-width:760px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.stat{flex:1;padding:26px 14px;text-align:center;border-left:1px solid var(--hair)}
+.stat:first-child{border-left:none}
+.stat b{display:block;font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.stat span{display:block;font-size:11.5px;color:var(--ink3);margin-top:5px;line-height:1.35}
+@media(max-width:700px){.stat b{font-size:19px}.stat{padding:18px 8px}}
+.fb{max-width:760px;margin:0 auto;padding:30px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:26px;text-align:left}
+@media(max-width:700px){.fb{grid-template-columns:1fr;gap:20px;padding-top:24px}}
+.fb-k{grid-column:1/-1;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);text-align:center;margin-bottom:-6px}
+.fb-i{display:flex;gap:12px;align-items:flex-start}
+.fb-i .tick{width:18px;height:18px;flex:none;margin-top:3px;border-radius:50%;background:rgba(116,41,255,.12);display:grid;place-items:center}
+.fb-i .tick svg{width:10px;height:10px;stroke:var(--accent-lift);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fb-i p{font-size:14px;line-height:1.55;color:var(--ink2);margin:0}
+.fb-i p b{color:var(--ink);font-weight:700}
+.sec{padding:96px 0}
+.sec-k{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px}
+.sec h2{font-size:38px;line-height:1.14;font-weight:700;letter-spacing:-.035em;margin:0 0 20px;max-width:680px}
+@media(max-width:820px){.sec h2{font-size:29px}.sec{padding:64px 0}}
+.sec p.body{font-size:17px;line-height:1.66;color:var(--ink2);max-width:640px;margin:0 0 18px;letter-spacing:-.008em}
+.sec p.body b{color:var(--ink);font-weight:600}
+.rule{height:1px;background:var(--hair)}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;max-width:820px}
+@media(max-width:760px){.notes{grid-template-columns:1fr}}
+.note{background:var(--surf);border:1px solid var(--hair);box-shadow:0 2px 10px rgba(17,17,20,.04);border-radius:16px;padding:24px 26px}
+.note h4{font-size:15px;font-weight:700;letter-spacing:-.015em;margin:0 0 8px}
+.note p{font-size:14px;line-height:1.6;color:var(--ink2)}
+.ideas{display:flex;flex-direction:column;margin-top:14px;border-top:1px solid var(--hair)}
+.idea{display:grid;grid-template-columns:52px 1fr 180px;gap:26px;align-items:start;padding:30px 4px;border-bottom:1px solid var(--hair);text-align:left;width:100%;transition:.18s}
+.idea:hover{background:rgba(255,255,255,.75)}
+@media(max-width:780px){.idea{grid-template-columns:38px 1fr;gap:16px}}
+.idea .no{font-size:13px;font-weight:700;color:var(--ink3);padding-top:4px;letter-spacing:.02em}
+.idea h3{font-size:21px;line-height:1.25;font-weight:700;letter-spacing:-.024em;margin:0 0 7px}
+@media(max-width:820px){.idea h3{font-size:18px}}
+.idea p{font-size:14.5px;line-height:1.6;color:var(--ink2);max-width:540px}
+.idea .out{text-align:right;padding-top:3px}
+@media(max-width:780px){.idea .out{grid-column:2;text-align:left;padding-top:12px}}
+.idea .out b{display:block;font-size:19px;font-weight:700;letter-spacing:-.025em;color:var(--accent-lift);white-space:nowrap}
+.idea .out span{display:block;font-size:10.5px;color:var(--ink3);margin-top:3px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.idea .seeit{display:inline-flex;align-items:center;gap:5px;margin-top:11px;font-size:12.5px;font-weight:600;color:var(--accent-lift)}
+.idea .seeit svg{width:12px;height:12px}
+.band{background:var(--surf);border:1px solid var(--hair);border-radius:28px;box-shadow:0 2px 10px rgba(17,17,20,.04);padding:40px 44px;margin-top:44px;display:flex;align-items:center;gap:36px;flex-wrap:wrap}
+@media(max-width:700px){.band{padding:28px 24px;gap:22px}}
+.band .lab{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.band .txt{flex:1;min-width:240px}
+.band .txt p{font-size:15.5px;line-height:1.6;color:var(--ink2)}
+.band .nums{display:flex;gap:34px}
+.band .nums div b{display:block;font-size:30px;font-weight:700;letter-spacing:-.035em;color:var(--accent-lift)}
+.band .nums div span{display:block;font-size:11px;color:var(--ink3);margin-top:2px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.cta-row{display:flex;justify-content:center;margin-top:52px;align-items:center;gap:22px;flex-wrap:wrap}
+.bigbtn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-size:15px;font-weight:700;letter-spacing:-.01em;padding:15px 26px;border-radius:30px;transition:.16s}
+.bigbtn:hover{filter:brightness(1.1)}
+.bigbtn svg{width:15px;height:15px}
+.foot{border-top:1px solid var(--hair);padding:36px 0 70px;font-size:12.5px;line-height:1.6;color:var(--ink3)}
+.herobtns{display:flex;justify-content:center;margin-top:30px}
+.ghostbtn{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--hair2);color:var(--ink);font-size:14px;font-weight:700;padding:9px 20px 9px 9px;border-radius:30px;box-shadow:0 2px 12px rgba(17,17,20,.06);transition:.16s}
+.ghostbtn:hover{box-shadow:0 4px 18px rgba(17,17,20,.1)}
+.ghostbtn .pl{width:30px;height:30px;border-radius:50%;background:var(--accent);display:grid;place-items:center}
+.ghostbtn .pl svg{width:12px;height:12px;fill:#fff;margin-left:2px}
+
+/* ============ prototype stage ============ */
+.stage{display:grid;grid-template-columns:minmax(440px,1fr) minmax(400px,470px);align-items:start;min-height:calc(100vh - 58px)}
+@media(max-width:1080px){.stage{grid-template-columns:1fr}}
+.phonecol{padding:34px 24px 46px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.panelcol{border-left:1px solid var(--hair);background:var(--panel);color:var(--panel-ink);min-height:calc(100vh - 58px);position:sticky;top:58px;max-height:calc(100vh - 58px);overflow-y:auto}
+@media(max-width:1080px){.panelcol{position:static;max-height:none;border-left:none;border-top:1px solid var(--hair)}}
+.phone{position:relative;width:390px;height:844px;flex:none;background:#000;border:11px solid #000;border-radius:46px;box-shadow:0 0 0 1.5px #D6D3E0,0 34px 70px -22px rgba(40,20,90,.35)}
+.phone-in{position:absolute;inset:0;border-radius:36px;overflow:hidden;background:var(--pk-bg);color-scheme:only light}
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:104px;height:30px;background:#000;border-radius:16px;z-index:60;pointer-events:none}
+.sbar{position:absolute;top:0;left:0;right:0;height:50px;z-index:55;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:14px 28px 0 34px;font:600 15px/1 'Inter',sans-serif;color:#111;transition:color .3s}
+.sbar.light{color:#fff}
+.sbar .glyphs{display:flex;gap:5px;align-items:center}
+.homebar{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:#111;z-index:56;pointer-events:none}
+.homebar.light{background:rgba(255,255,255,.9)}
+.screenwrap{position:absolute;inset:0;overflow:hidden;background:var(--pk-bg)}
+
+/* ============ phone screens — Praktika's system, all prefixed scr-/pk- ============ */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--pk-bg);color:var(--pk-ink);font-family:'Inter',-apple-system,sans-serif;
+  transform:translateX(100%);transition:transform .36s cubic-bezier(.32,.72,0,1);z-index:10;will-change:transform}
+.scr.is-active{transform:translateX(0);z-index:20}
+.scr.is-past{transform:translateX(-24%)}
+.scr.sheet{transform:translateY(100%)}
+.scr.sheet.is-active{transform:translateY(0);z-index:30}
+.scr.nofx{transition:none}
+.scr-top{flex:none;padding:54px 20px 0;position:relative;z-index:2}
+.scr-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 20px;scrollbar-width:none;position:relative;z-index:2}
+.scr-body::-webkit-scrollbar{display:none}
+.scr-body.dock{display:flex;flex-direction:column}
+.scr-foot{flex:none;padding:12px 20px 30px;position:relative;z-index:2;background:var(--pk-bg)}
+
+/* their header: round white back button + thin progress line with a purple head */
+.pk-nav{position:relative;height:44px;display:flex;align-items:center;justify-content:center}
+.pk-back{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--pk-ink);box-shadow:0 2px 12px rgba(0,0,0,.09)}
+.pk-back svg{width:20px;height:20px}
+.pk-prog{width:120px;height:3px;border-radius:2px;background:var(--pk-line);overflow:hidden}
+.pk-prog i{display:block;height:100%;background:var(--pk-purple);border-radius:2px;transition:width .4s cubic-bezier(.32,.72,0,1)}
+.pk-h{font-size:22px;line-height:1.22;font-weight:700;letter-spacing:-.02em;text-align:center;margin:18px 8px 0;color:var(--pk-ink)}
+.pk-sub{font-size:14px;line-height:1.4;color:var(--pk-muted);text-align:center;margin-top:7px;font-weight:500}
+.pk-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;height:56px;border-radius:28px;background:var(--pk-purple);color:#fff;
+  font:600 16.5px/1 'Inter',sans-serif;letter-spacing:-.01em;transition:filter .15s}
+.pk-btn:hover{filter:brightness(1.08)}
+.pk-btn[disabled]{opacity:.35;cursor:default}
+.pk-btn svg{width:18px;height:18px}
+.pk-ghost{display:block;width:100%;height:52px;margin-top:10px;border-radius:26px;background:var(--pk-card);font:600 15.5px/1 'Inter',sans-serif;color:var(--pk-ink)}
+.pk-txtbtn{display:block;margin:12px auto 0;font:600 14px/1 'Inter',sans-serif;color:var(--pk-muted)}
+.pk-fine{font-size:11.5px;line-height:1.45;color:var(--pk-muted);text-align:center;margin-top:12px}
+.pk-fine u{text-decoration:underline}
+
+/* welcome */
+.scr--welcome{background:#fff}
+.pk-wglow{position:absolute;left:0;right:0;top:0;height:66%;pointer-events:none;overflow:hidden}
+.pk-wglow img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.pk-wart{flex:1}
+.pk-wsheet{background:#fff;border-radius:30px 30px 0 0;padding:24px 20px 0;text-align:center;position:relative;z-index:2;margin:0 -20px 0;box-shadow:0 -10px 30px rgba(17,17,20,.08)}
+.pk-wsheet .mk{width:46px;height:46px;border-radius:13px;display:block;margin:0 auto 12px}
+.pk-wh{font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.025em;color:var(--pk-ink)}
+.pk-wl{font-size:14.5px;color:var(--pk-txt);margin-top:6px}
+.scr--welcome .scr-foot{background:#fff}
+
+/* option rows — their grey rows, purple outline when picked */
+.pk-rows{display:flex;flex-direction:column;gap:10px;margin-top:26px;padding-bottom:8px}
+.pk-row{display:flex;align-items:center;gap:14px;width:100%;min-height:62px;padding:10px 16px;border-radius:var(--r-ctl);background:var(--pk-card);border:2px solid transparent;
+  text-align:left;font:500 15.5px/1.3 'Inter',sans-serif;color:var(--pk-ink);transition:.15s}
+.pk-row.on{border-color:var(--pk-purple);background:#fff;box-shadow:0 4px 16px -6px rgba(116,41,255,.35)}
+.pk-emo{width:42px;height:42px;flex:none;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:22px;line-height:1}
+.pk-lv{width:46px;flex:none;font:900 27px/1 'Rubik',sans-serif;letter-spacing:-.02em;
+  background:linear-gradient(180deg,#B48AFF 0%,#7A2EFF 55%,#5512D8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1.5px 0 #3B0B9E) drop-shadow(0 0 .5px #fff)}
+
+/* pace: their projection chart, now in purple */
+.pk-chart{background:var(--pk-card);border-radius:var(--r-media);padding:15px 14px 10px;margin-top:20px}
+.pk-chart .big{font-size:21px;font-weight:800;letter-spacing:-.02em;color:var(--pk-purple)}
+.pk-chart .small{font-size:12.5px;font-weight:500;color:var(--pk-muted);margin:1px 0 6px}
+.pk-chart svg{display:block;width:100%;height:auto}
+.pk-cx{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--pk-muted);padding:4px 2px 0}
+.pk-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.pk-grid2 .pk-row{min-height:52px;justify-content:center;font-weight:600}
+.pk-note{font-size:12.5px;line-height:1.45;color:var(--pk-muted);margin-top:12px}
+.pk-note b{color:var(--pk-ink);font-weight:700}
+
+/* quick chat intro + chat */
+.pk-chathd{position:relative;height:44px;display:flex;align-items:center;justify-content:center}
+.pk-circ{position:absolute;top:2px;width:40px;height:40px;border-radius:50%;background:var(--pk-card);display:grid;place-items:center;color:#55555C}
+.pk-circ svg{width:18px;height:18px}
+.pk-who{display:flex;align-items:center;gap:5px;font:700 16px/1 'Inter',sans-serif;color:var(--pk-ink)}
+.pk-who svg{width:14px;height:14px}
+.pk-video{position:relative;border-radius:var(--r-media);overflow:hidden;height:226px;margin-top:10px;background:#D9D5CF}
+.pk-video img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.pk-video .ic{position:absolute;bottom:12px;display:flex;gap:16px;right:14px;color:#fff}
+.pk-video .ic svg{width:22px;height:22px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+.pk-qt{font-size:30px;font-weight:800;letter-spacing:-.03em;text-align:center;color:var(--pk-purple);margin-top:6px}
+.pk-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:14px;background:var(--pk-lilac);color:var(--pk-lilac-ink);font:600 12px/1 'Inter',sans-serif}
+.pk-msg{max-width:86%;border-radius:20px;padding:13px 15px;font-size:14.5px;line-height:1.42;margin-top:10px}
+.pk-msg.them{background:var(--pk-card);color:var(--pk-ink);border-top-left-radius:8px}
+.pk-msg.me{background:var(--pk-purple);color:#fff;margin-left:auto;border-top-right-radius:8px}
+.pk-msg .tools{display:flex;gap:8px;margin-top:9px}
+.pk-msg .tools i{width:28px;height:28px;border-radius:50%;background:#E6E6EA;display:grid;place-items:center;color:#55555C;font-style:normal;font-size:12px}
+.pk-msg.soft{background:var(--pk-lilac);color:var(--pk-txt);max-width:100%;border-radius:18px}
+.pk-msg.soft b{color:var(--pk-ink)}
+.pk-microw{display:flex;align-items:center;justify-content:center;position:relative;height:80px}
+.pk-kb{position:absolute;left:4px;top:12px;width:56px;height:56px;border-radius:50%;background:var(--pk-card);display:grid;place-items:center;color:#55555C}
+.pk-kb svg{width:24px;height:24px}
+.pk-mic{width:76px;height:76px;border-radius:50%;background:var(--pk-purple);display:grid;place-items:center;color:#fff;box-shadow:0 10px 26px -8px rgba(116,41,255,.7)}
+.pk-mic svg{width:28px;height:28px}
+.pk-hint{font-size:12px;color:var(--pk-muted);text-align:center;margin-top:4px}
+.pk-done{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:700;color:var(--pk-ink);margin:12px 0 4px}
+.pk-fix{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:28px 28px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.14);padding:12px 20px 30px;z-index:40;
+  transform:translateY(105%);transition:transform .34s cubic-bezier(.32,.72,0,1)}
+.pk-fix.on{transform:none}
+.pk-fix .hd{width:40px;height:4px;border-radius:2px;background:#D9D9DE;margin:0 auto 14px}
+.pk-fix h5{display:flex;align-items:center;gap:9px;font-size:19px;font-weight:700;color:var(--pk-ink);margin-top:14px}
+.pk-fix h5 i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-size:13px;font-weight:800;flex:none}
+.pk-fix p{font-size:14.5px;line-height:1.45;color:var(--pk-txt);margin-top:6px}
+.pk-dim{position:absolute;inset:0;background:rgba(17,17,20,.32);z-index:39;opacity:0;pointer-events:none;transition:opacity .3s}
+.pk-dim.on{opacity:1;pointer-events:auto}
+.pk-dlg{position:absolute;inset:0;z-index:45;background:rgba(17,17,20,.38);display:none;place-items:center}
+.pk-dlg.on{display:grid}
+.pk-dlg .bx{width:270px;background:rgba(242,242,244,.97);border-radius:14px;overflow:hidden;text-align:center;font-family:-apple-system,'Inter',sans-serif}
+.pk-dlg .bd{padding:19px 16px 15px}
+.pk-dlg h6{font-size:15px;font-weight:600;color:#000;line-height:1.3}
+.pk-dlg p{font-size:12.5px;color:#1c1c1e;line-height:1.35;margin-top:5px}
+.pk-dlg .bt{display:flex;border-top:.5px solid #C6C6C8}
+.pk-dlg .bt button{flex:1;padding:11px 4px;font-size:16px;color:#0A7AFF}
+.pk-dlg .bt button+button{border-left:.5px solid #C6C6C8;font-weight:600}
+
+/* loader */
+.pk-ring{width:150px;height:150px;margin:0 auto;position:relative}
+.pk-ring svg{transform:rotate(-90deg);display:block}
+.pk-ring .n{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;font-weight:800;color:var(--pk-purple);letter-spacing:-.03em}
+.pk-lh{font-size:21px;font-weight:700;letter-spacing:-.02em;text-align:center;margin:24px 10px 18px}
+.pk-ls{display:flex;align-items:center;gap:11px;font-size:14.5px;font-weight:500;color:var(--pk-txt);padding:9px 0;opacity:.28;transition:opacity .35s}
+.pk-ls.on{opacity:1}
+.pk-ls .d{width:22px;height:22px;border-radius:50%;background:var(--pk-purple);display:grid;place-items:center;flex:none}
+.pk-ls .d svg{width:11px;height:11px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* payoff — their study-plan screen */
+.pk-flag{font-size:44px;line-height:1;text-align:center;margin-top:4px}
+.pk-lang{display:flex;align-items:center;justify-content:center;gap:4px;font-size:22px;font-weight:700;color:var(--pk-ink);margin-top:8px}
+.pk-lang svg{width:16px;height:16px}
+.pk-meta{font-size:15px;color:var(--pk-txt);text-align:center;margin-top:3px}
+.pk-adj{display:flex;align-items:center;gap:8px;margin:14px auto 0;padding:12px 20px;border-radius:24px;background:var(--pk-lilac);color:var(--pk-lilac-ink);font:600 15px/1 'Inter',sans-serif;width:max-content}
+.pk-adj svg{width:18px;height:18px}
+.pk-acc{background:var(--pk-card);border-radius:var(--r-ctl);margin-top:16px;padding:4px 0}
+.pk-acc .hd{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.pk-acc .hd b{display:block;font-size:15.5px;font-weight:600;color:var(--pk-ink)}
+.pk-acc .hd span{display:block;font-size:13px;color:var(--pk-muted)}
+.pk-acc .it{display:flex;align-items:center;gap:12px;padding:13px 16px 13px 16px;font-size:15px;color:var(--pk-ink);border-top:1px solid var(--pk-line);margin-left:44px;padding-left:0}
+.pk-dot{width:22px;height:22px;flex:none;border-radius:50%;border:2px solid #D2D2D8}
+.pk-dot.half{border-color:var(--pk-purple);background:conic-gradient(var(--pk-purple) 0 25%,transparent 0);box-shadow:inset 0 0 0 3px #fff}
+.pk-acc .it .pk-dot{margin-left:-34px}
+.pk-pace{display:flex;gap:10px;margin-top:12px}
+.pk-pace div{flex:1;background:var(--pk-card);border-radius:16px;padding:11px 12px}
+.pk-pace small{display:block;font-size:11.5px;color:var(--pk-muted);font-weight:500}
+.pk-pace b{display:block;font-size:15px;color:var(--pk-ink);font-weight:700;margin-top:2px}
+
+/* paywall */
+.scr--pay .scr-top{padding:50px 20px 0}
+.pk-x{position:absolute;left:20px;top:52px;width:40px;height:40px;border-radius:50%;background:var(--pk-card);display:grid;place-items:center;color:#55555C;z-index:5}
+.pk-x svg{width:18px;height:18px}
+.pk-payart{height:150px;margin:0 -20px;position:relative;overflow:hidden;background:linear-gradient(180deg,#8A43FF,#7429FF);border-radius:0 0 28px 28px}
+.pk-payart::after{content:'';position:absolute;inset:0;background:radial-gradient(55% 60% at 90% 0%,rgba(255,106,26,.5),transparent 70%)}
+.pk-payart img{position:absolute;left:50%;top:6px;width:210px;transform:translateX(-50%);z-index:1}
+.pk-goalchip{display:flex;justify-content:center;margin-top:14px}
+.pk-payh{font-size:23px;line-height:1.2;font-weight:700;letter-spacing:-.025em;text-align:center;margin:8px 4px 0;color:var(--pk-ink)}
+.pk-payh em{font-style:normal;color:var(--pk-purple)}
+.pk-paysub{font-size:14px;color:var(--pk-txt);text-align:center;margin-top:6px}
+.pk-paysub b{color:var(--pk-ink)}
+.pk-proof{display:flex;justify-content:center;gap:4px;margin-top:12px}
+.pk-lau{display:flex;align-items:center;color:var(--pk-ink)}
+.pk-lau svg{width:12px;height:30px;flex:none;color:#B9A6E8}
+.pk-lau span{font-size:11px;line-height:1.15;text-align:center;font-weight:700;padding:0 2px}
+.pk-lau span small{display:block;font-size:9px;font-weight:500;color:var(--pk-muted)}
+.pk-plans{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.pk-plan{position:relative;display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 16px;border-radius:var(--r-ctl);background:var(--pk-card);border:2px solid transparent;transition:.15s}
+.pk-plan.on{border-color:var(--pk-purple);background:#fff}
+.pk-plan .nm{display:block;font-size:16px;font-weight:700;color:var(--pk-ink)}
+.pk-plan .pr{display:block;font-size:13.5px;color:var(--pk-txt);margin-top:2px}
+.pk-plan .pr b{color:var(--pk-purple)}
+.pk-rd{margin-left:auto;width:24px;height:24px;border-radius:50%;border:2px solid #CFCFD6;flex:none;display:grid;place-items:center}
+.pk-plan.on .pk-rd{background:var(--pk-purple);border-color:var(--pk-purple)}
+.pk-rd svg{width:12px;height:12px;stroke:#fff;stroke-width:3;fill:none;opacity:0}
+.pk-plan.on .pk-rd svg{opacity:1}
+.pk-badge{position:absolute;top:-10px;right:14px;background:var(--pk-purple);color:#fff;font:700 10.5px/1 'Inter',sans-serif;padding:5px 9px;border-radius:8px}
+.pk-tog{display:flex;align-items:center;gap:10px;background:var(--pk-card);border-radius:var(--r-ctl);padding:12px 14px;margin-top:10px;font-size:13.5px;color:var(--pk-txt)}
+.pk-tog b{color:var(--pk-ink)}
+.pk-sw{margin-left:auto;width:48px;height:28px;border-radius:14px;background:var(--pk-purple);position:relative;flex:none;transition:background .2s}
+.pk-sw i{position:absolute;top:3px;left:23px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s}
+.pk-sw.off{background:#D2D2D8}.pk-sw.off i{left:3px}
+.pk-quote{font-size:12px;line-height:1.45;color:var(--pk-txt);text-align:center;margin:10px 6px 0}
+.pk-quote b{color:var(--pk-ink);font-weight:600}
+.scr--pay .scr-foot{padding:10px 20px 24px}
+.pk-trust{font-size:12.5px;color:var(--pk-muted);text-align:center;margin-bottom:9px;font-weight:500}
+
+/* offer */
+.scr--offer .scr-top{padding:96px 20px 0;z-index:6}
+.scr--pay .scr-top{z-index:6}
+.pk-oart{position:relative;height:178px;margin:8px 0 0;overflow:hidden;border-radius:var(--r-media);background:#D9D5CF}
+.pk-oart img{width:100%;height:100%;object-fit:cover;object-position:50% 14%;display:block}
+.pk-ok{display:flex;justify-content:center;margin-top:4px}
+.pk-oh{font-size:25px;line-height:1.18;font-weight:700;letter-spacing:-.025em;text-align:center;margin:10px 0 0;color:var(--pk-ink)}
+.pk-oh em{font-style:normal;color:var(--pk-purple)}
+.pk-cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.pk-cmp div{border-radius:var(--r-ctl);padding:13px 10px;text-align:center;background:var(--pk-card);border:2px solid transparent}
+.pk-cmp div.on{border-color:var(--pk-purple);background:#fff}
+.pk-cmp small{display:block;font-size:12px;color:var(--pk-muted);font-weight:500}
+.pk-cmp b{display:block;font-size:24px;font-weight:800;color:var(--pk-ink);margin-top:4px;letter-spacing:-.02em}
+.pk-cmp div.on b{color:var(--pk-purple)}
+.pk-cmp span{display:block;font-size:11.5px;color:var(--pk-muted)}
+.pk-save{display:block;width:max-content;margin:12px auto 0;padding:6px 12px;border-radius:12px;background:var(--pk-lilac);color:var(--pk-lilac-ink);font:700 12.5px/1 'Inter',sans-serif}
+.scr--offer .scr-foot{padding:10px 20px 24px}
+
+/* dark mode — an approximation: no dark screens of Praktika's onboarding are published */
+.phone-in.dark{--pk-bg:#0E0E12;--pk-card:#1C1C22;--pk-card2:#24242B;--pk-line:#2C2C34;--pk-ink:#F4F4F6;--pk-txt:#C6C6CE;--pk-muted:#8C8C96;--pk-lilac:#2A1A4D;--pk-lilac-ink:#C4A6FF;background:var(--pk-bg)}
+.phone-in.dark .screenwrap{background:var(--pk-bg)}
+.phone-in.dark .pk-back,.phone-in.dark .pk-emo,.phone-in.dark .pk-wsheet,.phone-in.dark .scr--welcome .scr-foot,.phone-in.dark .pk-row.on,.phone-in.dark .pk-plan.on,.phone-in.dark .pk-cmp div.on,.phone-in.dark .pk-fix{background:#1C1C22}
+.phone-in.dark .pk-row.on,.phone-in.dark .pk-plan.on,.phone-in.dark .pk-cmp div.on{background:#221A35}
+.phone-in.dark .pk-back{color:#F4F4F6;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.phone-in.dark .pk-msg .tools i{background:#2C2C34;color:#C6C6CE}
+.phone-in.dark .pk-fix .hd{background:#3A3A44}
+.phone-in.dark .pk-dot{border-color:#44444E}
+.phone-in.dark .pk-dot.half{box-shadow:inset 0 0 0 3px #1C1C22}
+.phone-in.dark .pk-sw.off{background:#3A3A44}
+.phone-in.dark .pk-rd{border-color:#44444E}
+.phone-in.dark .pk-dim{background:rgba(0,0,0,.55)}
+.phone-in.dark .pk-video{background:#2a2a30}
+.phone-in.dark .pk-lv{filter:drop-shadow(0 1.5px 0 #2A0870)}
+.phone-in.dark .pk-x,.phone-in.dark .pk-circ,.phone-in.dark .pk-kb{color:#D0D0D8}
+
+/* prototype toolbar, walkthrough, QR */
+.tools{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px}
+.seg{display:inline-flex;align-items:center;background:#fff;border:1px solid #E3E1EA;border-radius:20px;padding:3px;gap:2px}
+.seg button{padding:6px 11px;border-radius:16px;font:600 12px/1 'Inter',sans-serif;color:var(--ink2);transition:.14s}
+.seg button.on{background:var(--ink);color:#fff}
+.demo-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:20px;background:var(--accent);color:#fff;font:700 12px/1 'Inter',sans-serif}
+.demo-cap{width:390px;max-width:calc(100vw - 24px);background:#fff;border:1px solid var(--hair);border-radius:16px;padding:14px 14px 12px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(17,17,20,.07)}
+.demo-cap .bar{position:absolute;left:0;top:0;right:0;height:3px;background:#EEEDF3}
+.demo-cap .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s linear}
+.demo-cap p{flex:1;font-size:13.5px;line-height:1.45;color:var(--ink);font-weight:500}
+.demo-cap button{font:700 12px/1 'Inter',sans-serif;color:var(--ink2);padding:7px 10px;border-radius:12px;border:1px solid #E3E1EA;flex:none}
+.finger{position:absolute;z-index:90;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(17,17,20,.24);border:2px solid rgba(255,255,255,.95);box-shadow:0 4px 14px rgba(0,0,0,.25);pointer-events:none;opacity:0;left:50%;top:60%;
+  transition:left .32s cubic-bezier(.4,0,.2,1),top .32s cubic-bezier(.4,0,.2,1),opacity .2s,transform .15s}
+.finger.show{opacity:1}
+.finger.press{transform:scale(.78);background:rgba(17,17,20,.4)}
+.qr{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--hair);border-radius:16px;padding:10px 16px 10px 10px;text-align:left}
+.qr img{width:135px;height:135px;display:block;image-rendering:pixelated;border-radius:6px}
+.qr span{font-size:12.5px;line-height:1.45;color:var(--ink2)}
+.qr b{display:block;color:var(--ink);font-size:13.5px}
+@media(max-width:1080px){.qr{display:none}}
+#view-proto .tools{order:0} #view-proto .demo-cap{order:1} #view-proto .phone{order:2} #view-proto .chips{order:3}
+#view-proto .chiphint{order:4} #view-proto .qr{order:5}
+.cta-row .qr{order:2}
+/* on a phone: the prototype is the screen */
+@media(max-width:500px){
+  #view-proto .phonecol{padding:0 0 28px;gap:14px}
+  #view-proto .phone{width:100vw;height:calc(100svh - 58px);min-height:640px;border:0;border-radius:0;box-shadow:none;order:1}
+  #view-proto .phone-in{border-radius:0}
+  #view-proto .island,#view-proto .sbar,#view-proto .homebar{display:none}
+  #view-proto .scr-top{padding-top:14px}
+  #view-proto .scr-foot{padding-bottom:18px}
+  #view-proto .scr--pay .scr-top{padding-top:10px}
+  #view-proto .scr--offer .scr-top{padding-top:56px}
+  #view-proto .pk-x{top:12px}
+  #view-proto .tools{order:3;padding:0 12px}
+  #view-proto .demo-cap{position:fixed;left:12px;right:12px;bottom:12px;width:auto;max-width:none;z-index:95}
+  #view-proto .chips{order:4;padding:0 12px}
+  #view-proto .chiphint{order:5}
+}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:470px;margin:0 auto}
+.chip{padding:7px 13px;border-radius:20px;border:1px solid #E3E1EA;background:#fff;font:600 12px/1 'Inter',sans-serif;color:var(--ink2);transition:.14s}
+.chip:hover{color:var(--ink);border-color:#CBC8D6}
+.chip.offer{border-style:dashed;border-color:var(--accent);color:var(--accent-lift)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;border-style:solid}
+.chiphint{text-align:center;font-size:11px;color:var(--ink3);margin:0;max-width:430px}
+
+/* ============ the short panel ============ */
+.pn{padding:30px 30px 60px}
+.pn-n{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
+.pn-n.ctx{color:var(--panel-muted)}
+.pn-t{font-size:23px;line-height:1.18;font-weight:700;letter-spacing:-.028em;margin:8px 0 0;color:var(--panel-ink)}
+.pn-hyp{font-size:15px;line-height:1.62;color:#2E2E38;margin:16px 0 0}
+.pn-hyp b{font-weight:700;color:var(--panel-ink)}
+.pn-out{margin-top:22px;border-top:1px solid var(--panel-line);padding-top:18px}
+.pn-out .lab{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--panel-muted)}
+.pn-out .v{font-size:31px;font-weight:700;letter-spacing:-.035em;color:var(--accent-ink);margin-top:7px;line-height:1}
+.pn-kept{margin-top:22px;font-size:12.5px;line-height:1.55;color:var(--panel-muted)}
+.pn-kept b{color:#2E2E38;font-weight:700}
+.pn-foot{font-size:11.5px;line-height:1.55;color:var(--panel-muted);border-top:1px solid var(--panel-line);padding-top:14px;margin-top:26px}
+.pn-sep{height:1px;background:var(--panel-line);margin:26px 0}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-in">
+    <div class="nav-brand"><span class="mk"><img src="img/icon.png" alt="Praktika"></span><b>Growth Audit</b><span>· Praktika</span></div>
+    <div class="nav-links"><button class="on" data-view="over">Overview</button><button data-view="proto">Prototype</button></div>
+  </div>
+</div>
+
+<!-- ======================= OVERVIEW ======================= -->
+<div class="view on" id="view-over">
+<div class="hero">
+  <div class="wrap">
+    <!-- month + year = the day you build, not this file --><div class="eyebrow">Growth Audit · October 2026</div>
+    <h1>Praktika</h1>
+    <p class="lede">Five ideas to unlock more revenue from the traffic you already have.</p>
+    <div class="meta">Prepared by <b>Adapty</b> · based on your live iOS flow and your App Store listing</div>
+    <div class="herobtns"><button class="ghostbtn" data-demo><span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg></span>Watch the 30-second walkthrough</button></div>
+    <div class="stats">
+      <div class="stat"><b>30,000+</b><span>apps run subscriptions<br>on Adapty</span></div>
+      <div class="stat"><b>5</b><span>ideas, each rebuilt<br>as a working screen</span></div>
+      <div class="stat"><b>0</b><span>design changes<br>to your art direction</span></div>
+    </div>
+    <div class="fb">
+      <div class="fb-k">Built in Adapty Flow Builder</div>
+      <div class="fb-i"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><p><b>Millions of dollars</b> in subscription revenue pass through Flow Builder every month.</p></div>
+      <div class="fb-i"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><p><b>Nearly 500 apps</b> actively build their paywalls and onboarding in it — plenty of them past $100K MRR.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="sec-k">What this is</div>
+    <h2>We went through Praktika the way a new learner does, then rebuilt the parts we think are leaving money on the table.</h2>
+    <p class="body">Adapty powers subscriptions for <b>30,000+ apps</b>, so we get to see what actually moves conversion and ARPU across the market rather than inside one app. We pointed that at Praktika: went through the first run from the welcome screen to the Quick Chat and the paywall, read your App Store listing and praktika.ai, and looked for gaps between what you already have and what you currently show people.</p>
+    <p class="body">What follows is five ideas — not fifteen. Each one is a hypothesis you can A/B test, and each one is built into a clickable prototype so you can see it rather than imagine it. <b>The prototype uses your design, not ours.</b></p>
+    <div class="notes">
+      <div class="note"><h4>We did not redesign your app</h4><p>Every screen in the prototype is yours — your purple, your grey rows, your 3D level codes, Skye and her chat, the correction sheet, your study plan and your plan cards. Only the order changed, plus a few things you already own but do not show at the right moment. This is not a design pitch.</p></div>
+      <div class="note"><h4>You may have tested some of this</h4><p>We are working from the outside, so we cannot see your experiment history. If one of these is something you have already run, tell us — we will go deeper on the rest rather than repeat it.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="sec-k">The five ideas</div>
+    <h2>Ranked by what we would test first.</h2>
+    <p class="body">Each one links straight to the screen in the prototype.</p>
+    <div class="ideas">
+      <button class="idea" data-jump="offer"><span class="no">01</span><span>
+        <h3>Offer your 3-month promo when they close</h3>
+        <p>Today the X on the paywall ends the flow. You already list a 3-Month Promo at $19.99 on your App Store page, which is $6.66 a month against the $12 a month your 3-month plan shows. Offer it once, to the person who said no.</p>
+        <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+        <span class="out"><b>ARPU +10–15%</b><span>second chance</span></span></button>
+      <button class="idea" data-jump="paywall"><span class="no">02</span><span>
+        <h3>Name their goal on the paywall</h3>
+        <p>The flow asks why they are learning, their level and how many minutes a day, and the study plan shows it back. Then the paywall says “your personal AI tutor”, the same for everyone. Make it say “your Travel English plan”.</p>
+        <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+        <span class="out"><b>CR +15–20%</b><span>to purchase</span></span></button>
+      <button class="idea" data-jump="quick"><span class="no">03</span><span>
+        <h3>Ask for permissions after the paywall</h3>
+        <p>Tracking is requested on screen 2, notifications a few taps later and the microphone before anyone has decided to speak. Ask for the mic the first time they press it, and leave tracking and notifications until after the purchase.</p>
+        <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+        <span class="out"><b>CR +10–15%</b><span>to purchase</span></span></button>
+      <button class="idea" data-jump="paywall"><span class="no">04</span><span>
+        <h3>Put 4.7 stars and 30M+ learners by the button</h3>
+        <p>You have 4.7 stars from 165K App Store ratings, 30M+ learners and 100K+ five-star reviews. In the flow, the only trace of that is one rating tile in the paywall carousel. Put it next to Start for Free.</p>
+        <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+        <span class="out"><b>CR +10–15%</b><span>to purchase</span></span></button>
+      <button class="idea" data-jump="loader"><span class="no">05</span><span>
+        <h3>Take the rating request out of the loader</h3>
+        <p>The App Store rating prompt fires halfway through “we're building your plan”, one screen before the price, and the loader itself just counts to 100. Move the prompt to after the purchase and let the loader name what they told you.</p>
+        <span class="seeit">See the screen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+        <span class="out"><b>CR +8–12%</b><span>to purchase</span></span></button>
+    </div>
+    <div class="band">
+      <div class="txt"><div class="lab">Potential outcome</div><p>Run together, these five move the same funnel at three points: what interrupts people before the price, what the paywall says about their plan, and what happens when they say no.</p></div>
+      <div class="nums"><div><b>+25%</b><span>CR to purchase</span></div><div><b>+30%</b><span>ARPU</span></div></div>
+    </div>
+    <div class="cta-row">
+      <div class="qr"><img src="img/qr.svg?v=1" alt="QR code for the prototype"><span><b>Or open it on your phone</b>Scan to try the flow in your hand.</span></div>
+      <button class="bigbtn" data-view="proto">Open the prototype <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+<div class="foot"><div class="wrap">Impact ranges are Adapty's expected effect from teardowns and A/B tests across subscription apps — not measured lift for Praktika. Every price, rating, quote and feature line here and in the prototype comes from Praktika's own App Store listing, praktika.ai and in-app screens.</div></div>
+</div><!-- /view-over -->
+
+<!-- ======================= PROTOTYPE ======================= -->
+<div class="view" id="view-proto">
+<div class="stage">
+  <div class="phonecol">
+    <div class="tools">
+      <div class="seg" id="segLang"><button data-lang="en" class="on">EN</button><button data-lang="es">ES</button><button data-lang="pt">PT</button></div>
+      <div class="seg" id="segTheme"><button data-theme="light" class="on">Light</button><button data-theme="dark">Dark</button></div>
+      <button class="demo-btn" id="demoBtn"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>30-sec walkthrough</button>
+    </div>
+    <div class="phone">
+      <div class="phone-in" id="phoneIn">
+        <div class="island"></div>
+        <div class="sbar" id="sbar"><span>12:25</span><span class="glyphs">
+          <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7.5" width="3" height="3.5" rx="1"/><rect x="4.5" y="5.5" width="3" height="5.5" rx="1"/><rect x="9" y="3" width="3" height="8" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+          <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M8 10.5 5.6 7.9a3.4 3.4 0 0 1 4.8 0L8 10.5Zm0-5.6a6.4 6.4 0 0 0-4.5 1.9L1.7 4.9a9 9 0 0 1 12.6 0l-1.8 1.9A6.4 6.4 0 0 0 8 4.9Z"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="20" height="10.8" rx="3" stroke="currentColor" stroke-opacity=".5"/><rect x="2.2" y="2.2" width="16.5" height="7.6" rx="1.8" fill="currentColor"/><path d="M22.3 4.1v3.8a2 2 0 0 0 0-3.8Z" fill="currentColor" fill-opacity=".5"/></svg></span></div>
+        <div class="homebar" id="homebar"></div>
+        <div class="finger" id="finger"></div>
+        <div class="screenwrap">
+
+<!-- WELCOME -->
+<section class="scr scr--welcome" data-id="welcome">
+  <div class="pk-wglow"><img src="img/skye-full.png" alt="Skye, a Praktika AI tutor"></div>
+  <div class="scr-top" style="padding:0"></div>
+  <div class="scr-body dock">
+    <div class="pk-wart"></div>
+    <div class="pk-wsheet"><img class="mk" src="img/icon.png" alt=""><h2 class="pk-wh" data-t="wel.h"></h2><p class="pk-wl" data-t="wel.l"></p></div>
+  </div>
+  <div class="scr-foot">
+    <button class="pk-btn" data-go="goal" data-t="wel.cta"></button>
+    <button class="pk-ghost" data-go="goal" data-t="wel.log"></button>
+    <p class="pk-fine" data-th="wel.fine"></p>
+  </div>
+</section>
+
+<!-- GOAL -->
+<section class="scr" data-id="goal">
+  <div class="scr-top"><div class="pk-nav"><button class="pk-back" data-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="pk-prog"><i style="width:20%"></i></div></div>
+    <h2 class="pk-h" data-t="goal.h"></h2></div>
+  <div class="scr-body"><div class="pk-rows" id="goalList"></div></div>
+  <div class="scr-foot"><button class="pk-btn" data-go="level" data-t="cont"></button></div>
+</section>
+
+<!-- LEVEL -->
+<section class="scr" data-id="level">
+  <div class="scr-top"><div class="pk-nav"><button class="pk-back" data-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="pk-prog"><i style="width:40%"></i></div></div>
+    <h2 class="pk-h" data-t="lv.h"></h2></div>
+  <div class="scr-body"><div class="pk-rows" id="levelList" style="margin-top:40px"></div></div>
+  <div class="scr-foot"><button class="pk-btn" data-go="pace" data-t="cont"></button></div>
+</section>
+
+<!-- PACE -->
+<section class="scr" data-id="pace">
+  <div class="scr-top"><div class="pk-nav"><button class="pk-back" data-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="pk-prog"><i style="width:60%"></i></div></div>
+    <h2 class="pk-h" data-t="pc.h"></h2></div>
+  <div class="scr-body">
+    <div class="pk-chart" id="paceChart"></div>
+    <div class="pk-grid2" id="paceGrid"></div>
+    <p class="pk-note" id="paceNote"></p>
+  </div>
+  <div class="scr-foot"><button class="pk-btn" data-go="quick" data-t="cont"></button></div>
+</section>
+
+<!-- QUICK CHAT INTRO -->
+<section class="scr" data-id="quick">
+  <div class="scr-top"><div class="pk-nav"><button class="pk-back" data-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="pk-prog"><i style="width:75%"></i></div></div>
+    <h2 class="pk-qt">Quick Chat</h2></div>
+  <div class="scr-body">
+    <div class="pk-video"><img src="img/skye-video.png" alt="Skye"><span style="position:absolute;top:12px;right:12px" class="pk-pill" data-t="qc.min"></span></div>
+    <div class="pk-msg them" style="max-width:100%;margin-top:14px" id="qcHello"></div>
+    <div class="pk-msg soft" data-th="qc.mic"></div>
+  </div>
+  <div class="scr-foot"><button class="pk-btn" data-go="chat" data-t="qc.go"></button><button class="pk-txtbtn" data-go="loader" data-t="qc.skip"></button></div>
+</section>
+
+<!-- THE CHAT -->
+<section class="scr" data-id="chat">
+  <div class="scr-top" style="padding-top:52px">
+    <div class="pk-chathd"><button class="pk-circ" style="left:0" data-back aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <span class="pk-who">Skye <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+    <div class="pk-video" style="height:200px"><img src="img/skye-video.png" alt="Skye"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Zm14 3 4-3v10l-4-3v-4Z"/></svg></span></div>
+  </div>
+  <div class="scr-body" id="chatBody"><div id="chatLog"></div></div>
+  <div class="scr-foot" id="chatFoot"></div>
+  <div class="pk-dim" id="fixDim"></div>
+  <div class="pk-fix" id="fixSheet"><div class="hd"></div>
+    <div class="pk-msg me" style="max-width:88%;margin:0 auto">I hope so! Sometimes I feel nerveus when speaking, so I want to practice more</div>
+    <h5><i style="background:var(--pk-green)">✓</i><span data-t="fx.b"></span></h5><p>I hope so! Sometimes I feel nervous when speaking, so I want to practice more</p>
+    <h5><i style="background:var(--pk-amber)">?</i><span data-t="fx.e"></span></h5><p>"Nerveus" is a misspelling, the correct word would be "nervous".</p>
+    <button class="pk-btn" style="margin-top:18px" id="fixOk" data-t="fx.ok"></button>
+  </div>
+  <div class="pk-dlg" id="micDlg"><div class="bx"><div class="bd"><h6>“Praktika” Would Like to Access the Microphone</h6><p data-t="mic.why"></p></div><div class="bt"><button id="micNo">Don’t Allow</button><button id="micYes">Allow</button></div></div></div>
+</section>
+
+<!-- LOADER -->
+<section class="scr" data-id="loader">
+  <div class="scr-top" style="padding-top:110px"></div>
+  <div class="scr-body">
+    <div class="pk-ring"><svg width="150" height="150" viewBox="0 0 150 150"><circle cx="75" cy="75" r="66" fill="none" stroke="var(--pk-card)" stroke-width="10"/><circle id="ringC" cx="75" cy="75" r="66" fill="none" stroke="#7429FF" stroke-width="10" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="415"/></svg><div class="n" id="ringN">0</div></div>
+    <h2 class="pk-lh" data-t="ld.h"></h2>
+    <div id="loadLines"></div>
+  </div>
+  <div class="scr-foot"><button class="pk-btn" id="loadCta" disabled data-go="payoff" data-t="ld.cta"></button></div>
+</section>
+
+<!-- PAYOFF: their study plan -->
+<section class="scr" data-id="payoff">
+  <div class="scr-top"><div class="pk-nav"><button class="pk-back" data-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button></div>
+    <div class="pk-flag">🇬🇧</div>
+    <div class="pk-lang"><span data-t="po.lang"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></div>
+    <p class="pk-meta" id="poMeta"></p>
+    <button class="pk-adj" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span data-t="po.adj"></span></button>
+  </div>
+  <div class="scr-body">
+    <div class="pk-pace"><div><small data-t="po.day"></small><b id="poDay"></b></div><div><small data-t="po.month"></small><b id="poMonth"></b></div></div>
+    <div class="pk-acc" id="poTopics"></div>
+    <div style="height:8px"></div>
+  </div>
+  <div class="scr-foot"><button class="pk-btn" data-go="paywall" data-t="cont"></button></div>
+</section>
+
+<!-- PAYWALL -->
+<section class="scr scr--pay" data-id="paywall">
+  <div class="scr-top">
+    <button class="pk-x" id="payClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="scr-body">
+    <div class="pk-goalchip"><span class="pk-pill" id="payChip"></span></div>
+    <h2 class="pk-payh" id="payH"></h2>
+    <p class="pk-paysub" data-th="pw.sub"></p>
+    <div class="pk-proof" id="payProof"></div>
+    <div class="pk-plans" id="planList">
+      <button class="pk-plan" data-v="year"><span class="pk-badge" data-t="pw.best"></span><span><span class="nm" data-t="pw.year"></span><span class="pr" data-th="pw.yearS"></span></span><span class="pk-rd"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+      <button class="pk-plan" data-v="q"><span><span class="nm" data-t="pw.q"></span><span class="pr" data-t="pw.qS"></span></span><span class="pk-rd"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+    </div>
+    <div class="pk-tog"><span id="payNotify"></span><span class="pk-sw" id="paySw"><i></i></span></div>
+    <p class="pk-quote">“…As someone who could previously not speak French, only read it, now I am speaking.” <b>— sativashawdy, App Store</b></p>
+  </div>
+  <div class="scr-foot">
+    <p class="pk-trust" id="payTrust"></p>
+    <button class="pk-btn" id="payCta"></button>
+    <button class="pk-txtbtn" data-t="pw.restore"></button>
+  </div>
+</section>
+
+<!-- OFFER ON CLOSE -->
+<section class="scr scr--offer sheet" data-id="offer">
+  <div class="scr-top">
+    <button class="pk-x" id="offClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="scr-body">
+    <div class="pk-oart"><img src="img/raven-card.png" alt="Raven, a Praktika AI tutor"></div>
+    <div class="pk-ok"><span class="pk-pill" data-t="of.k"></span></div>
+    <h2 class="pk-oh" id="offH"></h2>
+    <div class="pk-cmp">
+      <div class="on"><small data-t="of.promo"></small><b>$6.66</b><span data-t="of.pm"></span></div>
+      <div><small data-t="of.q"></small><b>$12</b><span data-t="of.pm"></span></div>
+    </div>
+    <span class="pk-save" data-t="of.save"></span>
+    <div class="pk-plans" style="margin-top:14px"><div class="pk-plan on"><span><span class="nm" data-t="of.nm"></span><span class="pr" data-t="of.bill"></span></span><span class="pk-rd"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span></div></div>
+  </div>
+  <div class="scr-foot">
+    <p class="pk-trust" data-t="of.trust"></p>
+    <button class="pk-btn" id="offerCta" data-t="of.cta"></button>
+    <button class="pk-txtbtn" id="offBack" data-t="of.back"></button>
+  </div>
+</section>
+
+        </div>
+      </div>
+    </div>
+    <div class="demo-cap hidden" id="demoCap"><div class="bar"><i id="demoProg"></i></div><p id="demoTxt"></p><button id="demoStop">Stop</button></div>
+    <div class="chips" id="chips"></div>
+    <p class="chiphint">Jump to any screen — answers already filled in.</p>
+    <div class="qr"><img src="img/qr.svg?v=1" alt="QR code for this prototype"><span><b>Open it on your phone</b>Scan to try the flow in your hand.</span></div>
+  </div>
+  <div class="panelcol"><div class="pn" id="panel"></div></div>
+</div>
+</div><!-- /view-proto -->
+
+<script>
+/* ================= copy, per language (phone screens only) ================= */
+var LANGS=['en','es','pt'], LOCALE={en:'en-US',es:'es-ES',pt:'pt-BR'};
+var T={
+ 'wel.h':["Welcome to Praktika","Te damos la bienvenida a Praktika","Boas-vindas ao Praktika"],
+ 'wel.l':["Learn a new language with AI tutors","Aprende un idioma nuevo con tutores de IA","Aprenda um novo idioma com tutores de IA"],
+ 'wel.cta':["Get Started","Empezar","Começar"],
+ 'wel.log':["Log in","Iniciar sesión","Entrar"],
+ 'wel.fine':["By using the app you agree to the<br><u>Privacy Policy</u> and <u>Terms &amp; Conditions</u>","Al usar la app aceptas la<br><u>Política de privacidad</u> y los <u>Términos y condiciones</u>","Ao usar o app, você aceita a<br><u>Política de Privacidade</u> e os <u>Termos e Condições</u>"],
+ 'cont':["Continue","Continuar","Continuar"],
+ 'goal.h':["Why do you want to learn a new language?","¿Por qué quieres aprender un idioma nuevo?","Por que você quer aprender um novo idioma?"],
+ 'lv.h':["What’s your level of English?","¿Cuál es tu nivel de inglés?","Qual é o seu nível de inglês?"],
+ 'pc.h':["How many minutes do you want to practice per day?","¿Cuántos minutos quieres practicar al día?","Quantos minutos você quer praticar por dia?"],
+ 'pc.big':["{h} hours per month","{h} horas al mes","{h} horas por mês"],
+ 'pc.small':["Just {m} min a day","Solo {m} min al día","Só {m} min por dia"],
+ 'pc.min':["{m} min","{m} min","{m} min"],
+ 'pc.today':["Today","Hoy","Hoje"],
+ 'pc.note':["At {m} min a day you pass <b>10 hours of speaking practice</b> around {d}.","Con {m} min al día superas <b>10 horas de práctica oral</b> hacia el {d}.","Com {m} min por dia você passa de <b>10 horas de conversação</b> por volta de {d}."],
+ 'qc.min':["🕐 1 min","🕐 1 min","🕐 1 min"],
+ 'qc.hello':["🇬🇧 Hi, {n}! Let’s start our first lesson to accurately assess your English level.","🇬🇧 ¡Hola, {n}! Empecemos la primera lección para medir bien tu nivel de inglés.","🇬🇧 Oi, {n}! Vamos começar a primeira aula para avaliar bem o seu nível de inglês."],
+ 'qc.mic':["🎙️ <b>You speak, Skye listens.</b> We ask for the microphone the first time you press the button, not before.","🎙️ <b>Tú hablas, Skye escucha.</b> Pedimos el micrófono la primera vez que pulsas el botón, no antes.","🎙️ <b>Você fala, a Skye escuta.</b> Pedimos o microfone na primeira vez que você aperta o botão, não antes."],
+ 'qc.go':["Let’s go!","¡Vamos!","Vamos lá!"],
+ 'qc.skip':["Skip Quick chat","Saltar Quick Chat","Pular Quick Chat"],
+ 'mic.why':["This app uses the mic to record your answers for speaking practice.","La app usa el micrófono para grabar tus respuestas en la práctica oral.","O app usa o microfone para gravar suas respostas na prática de conversação."],
+ 'ch.hold':["Hold to speak","Mantén pulsado para hablar","Segure para falar"],
+ 'ch.first':["Hold to speak · the mic is requested on this tap","Mantén pulsado · el micrófono se pide en este toque","Segure para falar · o microfone é pedido neste toque"],
+ 'ch.done':["🎉 Lesson complete","🎉 Lección completada","🎉 Aula concluída"],
+ 'ch.fin':["Finish onboarding","Terminar","Concluir"],
+ 'fx.b':["It is better to say","Es mejor decir","É melhor dizer"],
+ 'fx.e':["Explanation","Explicación","Explicação"],
+ 'fx.ok':["Got it","Entendido","Entendi"],
+ 'ld.h':["We’re building your English plan","Estamos creando tu plan de inglés","Estamos montando seu plano de inglês"],
+ 'ld.cta':["Get my Personal Plan","Ver mi plan personal","Ver meu plano pessoal"],
+ 'ld.goal':["Goal: {g}","Objetivo: {g}","Objetivo: {g}"],
+ 'ld.lv':["Level {l} confirmed in Quick Chat","Nivel {l} confirmado en el Quick Chat","Nível {l} confirmado no Quick Chat"],
+ 'ld.pace':["{m} min a day · {h} h a month","{m} min al día · {h} h al mes","{m} min por dia · {h} h por mês"],
+ 'ld.top':["First topic: {t}","Primer tema: {t}","Primeiro tema: {t}"],
+ 'po.lang':["English","Inglés","Inglês"],
+ 'po.adj':["Adjust plan","Ajustar plan","Ajustar plano"],
+ 'po.day':["Every day","Cada día","Todo dia"],
+ 'po.month':["Speaking practice","Práctica oral","Prática de conversação"],
+ 'po.mo':["{h} h a month","{h} h al mes","{h} h por mês"],
+ 'po.topic':["Topic {n}","Tema {n}","Tema {n}"],
+ 'pw.h':["Get full access to your <em>{g} English plan</em>","Accede a todo tu <em>plan de inglés para {g}</em>","Acesse todo o seu <em>plano de inglês para {g}</em>"],
+ 'pw.chip':["{e} {g} · {m} min a day · level {l}","{e} {g} · {m} min al día · nivel {l}","{e} {g} · {m} min por dia · nível {l}"],
+ 'pw.sub':["<b>1 week</b> free then <b>$99.99</b> annually · 🎉 50x cheaper than a tutor","<b>1 semana</b> gratis y luego <b>$99.99</b> al año · 🎉 50x más barato que un tutor","<b>1 semana</b> grátis, depois <b>$99.99</b> por ano · 🎉 50x mais barato que um tutor"],
+ 'pw.rate':["165K App Store ratings","165K valoraciones","165 mil avaliações"],
+ 'pw.learn':["learners","estudiantes","alunos"],
+ 'pw.rev':["5-star reviews","reseñas de 5★","avaliações 5★"],
+ 'pw.best':["Free trial · Best value","Prueba gratis · Mejor precio","Teste grátis · Melhor valor"],
+ 'pw.year':["Year","Anual","Anual"],
+ 'pw.yearS':["$8 / month · <b>save $45 a year</b>","$8 / mes · <b>ahorras $45 al año</b>","$8 / mês · <b>economize $45 por ano</b>"],
+ 'pw.q':["3 Months","3 meses","3 meses"],
+ 'pw.qS':["$12 / month","$12 / mes","$12 / mês"],
+ 'pw.notify':["You will be notified on: <b>{d}</b>","Te avisaremos el: <b>{d}</b>","Vamos avisar em: <b>{d}</b>"],
+ 'pw.trY':["No charge today. Cancel anytime.","Hoy no se cobra nada. Cancela cuando quieras.","Nada é cobrado hoje. Cancele quando quiser."],
+ 'pw.trQ':["Billed today. Cancel anytime.","Se cobra hoy. Cancela cuando quieras.","Cobrado hoje. Cancele quando quiser."],
+ 'pw.ctaY':["Start for Free","Empezar gratis","Começar grátis"],
+ 'pw.ctaQ':["Start for $12 / month","Empezar por $12 / mes","Começar por $12 / mês"],
+ 'pw.restore':["Restore purchase","Restaurar compra","Restaurar compra"],
+ 'of.k':["One-time offer","Oferta única","Oferta única"],
+ 'of.h':["Not ready for a year? Keep your <em>{g} plan</em> for 3 months","¿Aún no quieres un año? Quédate tu <em>plan para {g}</em> 3 meses","Ainda não quer um ano? Fique com seu <em>plano para {g}</em> por 3 meses"],
+ 'of.promo':["3-Month Promo","Promo 3 meses","Promo 3 meses"],
+ 'of.q':["3 Months plan","Plan de 3 meses","Plano de 3 meses"],
+ 'of.pm':["per month","al mes","por mês"],
+ 'of.save':["44% less a month","44 % menos al mes","44% a menos por mês"],
+ 'of.nm':["Praktika Premium · 3 months","Praktika Premium · 3 meses","Praktika Premium · 3 meses"],
+ 'of.bill':["$19.99 once for 3 months","$19.99 por 3 meses","$19.99 por 3 meses"],
+ 'of.trust':["Charged today. Cancel anytime.","Se cobra hoy. Cancela cuando quieras.","Cobrado hoje. Cancele quando quiser."],
+ 'of.cta':["Get 3 months for $19.99","3 meses por $19.99","3 meses por $19.99"],
+ 'of.back':["Keep my free week instead","Prefiero mi semana gratis","Prefiro minha semana grátis"]
+};
+var GOALS=[
+ {k:'career',e:'💼',l:['Career growth','Crecimiento profesional','Crescimento profissional'],p:['Career','tu carrera','sua carreira'],
+  top:[['Advanced Communication',['Business Vocabulary','Conditionals and Subjunctive','Corporate Reports','Business Interviews']]]},
+ {k:'travel',e:'✈️',l:['Travel','Viajar','Viajar'],p:['Travel','viajar','viajar'],
+  top:[['Travel',['On the plane','Exploration','Travel Tips','Wanderlust']]]},
+ {k:'study',e:'📚',l:['Study abroad','Estudiar en el extranjero','Estudar no exterior'],p:['Study Abroad','estudiar fuera','estudar fora'],
+  top:[['Academic English',['IELTS & TOEFL','Education','Science','Literature']]]},
+ {k:'live',e:'🏠',l:['Living abroad','Vivir en el extranjero','Morar no exterior'],p:['Living Abroad','vivir fuera','morar fora'],
+  top:[['Cultural Appreciation',['Festivals','Cuisine','Immigration','Pop Culture']]]},
+ {k:'self',e:'🌱',l:['Personal development','Desarrollo personal','Desenvolvimento pessoal'],p:['Personal Growth','crecer','crescer'],
+  top:[['Current Affairs',['Technology','Environmental Issues','Economic Growth','Startups']]]}
+];
+var GOALK={}; GOALS.forEach(function(g){ GOALK[g.k]=g; });
+var MORE=['Current Affairs','Academic English','Cultural Appreciation','Advanced Communication','Travel'];
+var LEVELS=[['A1',['I can take part in basic chats','Puedo tener charlas básicas','Consigo ter conversas básicas']],
+ ['A2',['I can handle short chats on familiar topics','Puedo manejar charlas cortas sobre temas conocidos','Consigo manter conversas curtas sobre temas conhecidos']],
+ ['B1',['I can talk about everyday topics in detail','Puedo hablar con detalle de temas cotidianos','Consigo falar de temas do dia a dia com detalhes']],
+ ['B2',['I can talk fluently with native speakers','Puedo hablar con fluidez con nativos','Consigo falar com fluência com nativos']],
+ ['C1',['I can express myself clearly on any topic','Puedo expresarme con claridad sobre cualquier tema','Consigo me expressar com clareza sobre qualquer tema']],
+ ['C2',['I can communicate like a native speaker','Puedo comunicarme como un nativo','Consigo me comunicar como um nativo']]];
+var PACES=[5,10,15,30,40,60];
+
+/* ================= state ================= */
+var S0={lang:'en',theme:'light'};
+function defaults(){ return {lang:S0.lang,theme:S0.theme,goal:'travel',level:'A2',pace:5,name:'Julia',plan:'year',notify:true,turn:0,mic:false}; }
+var S=defaults();
+function L(){ return LANGS.indexOf(S.lang); }
+function t(k,v){ var s=(T[k]||[k])[L()]; if(v) Object.keys(v).forEach(function(x){ s=s.split('{'+x+'}').join(v[x]); }); return s; }
+function addD(n){ var d=new Date(); d.setDate(d.getDate()+n); return d; }
+function fmt(d){ return new Intl.DateTimeFormat(LOCALE[S.lang],{month:'short',day:'numeric'}).format(d); }
+function hrs(){ var h=Math.round(S.pace*30/60*10)/10; return S.lang==='en'?String(h):String(h).replace('.',','); }
+
+/* ================= their projection chart, recomputed from the pace ================= */
+function chartSVG(){
+  var W=322,H=124,XM=310,k=PACES.indexOf(S.pace);
+  function curve(kk){ var s=.30+kk*.135,d=''; for(var i=0;i<=30;i++){ var x=i/30,y=H-4-(H*.80)*Math.pow(x,2.1)*s; d+=(i?'L':'M')+(x*XM+6).toFixed(1)+' '+y.toFixed(1); } return d; }
+  var g=PACES.map(function(p,i){ return i===k?'':'<path d="'+curve(i)+'" fill="none" stroke="#CDBDF7" stroke-width="1.2" stroke-dasharray="3 4" opacity=".8"/>'; }).join('');
+  var dots=[0,.25,.5,.75,1].map(function(tt,i){ var x=tt*XM+6,y=H-4-(H*.80)*Math.pow(tt,2.1)*(.30+k*.135);
+    return i===4?'<circle cx="'+x+'" cy="'+y+'" r="7" fill="#fff" stroke="#7429FF" stroke-width="3"/>':'<circle cx="'+x+'" cy="'+y+'" r="3.4" fill="#fff" stroke="#7429FF" stroke-width="1.8"/>'; }).join('');
+  var vg=[.25,.5,.75].map(function(tt){ var x=(tt*XM+6).toFixed(1); return '<line x1="'+x+'" y1="0" x2="'+x+'" y2="'+H+'" stroke="rgba(120,100,180,.14)"/>'; }).join('');
+  return '<p class="big">'+t('pc.big',{h:hrs()})+'</p><p class="small">'+t('pc.small',{m:S.pace})+'</p>'+
+    '<svg viewBox="0 0 '+W+' '+H+'">'+vg+g+'<path d="'+curve(k)+'" fill="none" stroke="#7429FF" stroke-width="2.4" stroke-linecap="round"/>'+dots+'</svg>'+
+    '<div class="pk-cx"><span>'+t('pc.today')+'</span><span>'+fmt(addD(14))+'</span><span>'+fmt(addD(28))+'</span></div>';
+}
+function laurel(f){ return '<svg viewBox="0 0 13 30" style="'+(f?'transform:scaleX(-1)':'')+'"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M10 28C4 24 2 17 4 9"/><path d="M4.2 11c-2-1-2.6-3-2.2-5 1.8.8 2.6 2.6 2.2 5Z"/><path d="M3.8 16c-2.2-.6-3.2-2.4-3.2-4.4 2 .6 3.2 2.2 3.2 4.4Z"/><path d="M5 21c-2.2 0-3.6-1.6-4-3.6 2 .2 3.6 1.6 4 3.6Z"/><path d="M7.4 25.4c-2 .4-3.8-.8-4.6-2.6 2-.2 3.8.8 4.6 2.6Z"/></g></svg>'; }
+function lau(x){ return '<div class="pk-lau">'+laurel(0)+'<span>'+x+'</span>'+laurel(1)+'</div>'; }
+
+/* ================= builders ================= */
+function buildGoals(){ var el=document.getElementById('goalList'); el.innerHTML='';
+  GOALS.forEach(function(g){ var b=document.createElement('button'); b.className='pk-row'; b.dataset.v=g.k; b.innerHTML='<span class="pk-emo">'+g.e+'</span>'+g.l[L()];
+    b.addEventListener('click',function(){ S.goal=g.k; syncScreen(); }); el.appendChild(b); }); }
+function buildLevels(){ var el=document.getElementById('levelList'); el.innerHTML='';
+  LEVELS.forEach(function(v){ var b=document.createElement('button'); b.className='pk-row'; b.dataset.v=v[0]; b.innerHTML='<span class="pk-lv">'+v[0]+'</span>'+v[1][L()];
+    b.addEventListener('click',function(){ S.level=v[0]; syncScreen(); }); el.appendChild(b); }); }
+function buildPace(){ var el=document.getElementById('paceGrid'); el.innerHTML='';
+  PACES.forEach(function(p){ var b=document.createElement('button'); b.className='pk-row'; b.dataset.v=p; b.textContent=t('pc.min',{m:p});
+    b.addEventListener('click',function(){ S.pace=p; syncScreen(); }); el.appendChild(b); }); }
+function applyStatic(){ document.documentElement.lang=S.lang;
+  document.querySelectorAll('[data-t]').forEach(function(el){ el.textContent=t(el.dataset.t); });
+  document.querySelectorAll('[data-th]').forEach(function(el){ el.innerHTML=t(el.dataset.th); });
+  buildGoals(); buildLevels(); buildPace();
+  document.getElementById('payProof').innerHTML=lau('★ 4.7<small>'+t('pw.rate')+'</small>')+lau('30M+<small>'+t('pw.learn')+'</small>')+lau('100K+<small>'+t('pw.rev')+'</small>');
+}
+
+/* ================= the chat: their Quick Chat, scripted ================= */
+var TURNS=[
+ {them:"Hello! I’m your AI English tutor, here to help you improve your language skills in a fun and effective way"},
+ {me:"Hello!", them:"I will assist you with grammar, vocabulary, pronunciation, and even conversational practice"},
+ {me:"I hope so! Sometimes I feel nerveus when speaking, so I want to practice more", fix:true, them:"My goal is to make learning English easy and enjoyable for you"},
+ {done:true}
+];
+function paintChat(){
+  var h='';
+  for(var i=0;i<=S.turn && i<TURNS.length;i++){ var tr=TURNS[i];
+    if(tr.me) h+='<div class="pk-msg me">'+tr.me+'</div>';
+    if(tr.them) h+='<div class="pk-msg them">'+tr.them.split('{n}').join(S.name)+'<div class="tools"><i>🔊</i><i>文A</i></div></div>';
+    if(tr.done) h+='<div class="pk-done">'+t('ch.done')+'</div>'; }
+  document.getElementById('chatLog').innerHTML=h;
+  var b=document.getElementById('chatBody'); b.scrollTop=b.scrollHeight;
+  var done=S.turn>=TURNS.length-1;
+  document.getElementById('chatFoot').innerHTML = done
+    ? '<button class="pk-btn" id="chatFin">'+t('ch.fin')+'</button>'
+    : '<div class="pk-microw"><span class="pk-kb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></span><button class="pk-mic" id="micBtn" aria-label="Hold to speak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3.5 3.5 0 0 0 3.5-3.5v-6a3.5 3.5 0 0 0-7 0v6A3.5 3.5 0 0 0 12 15Zm6-3.5a1 1 0 0 0-2 0 4 4 0 0 1-8 0 1 1 0 0 0-2 0 6 6 0 0 0 5 5.9V20H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2h-2v-2.6a6 6 0 0 0 5-5.9Z"/></svg></button></div><p class="pk-hint">'+(S.mic?t('ch.hold'):t('ch.first'))+'</p>';
+  var mb=document.getElementById('micBtn'); if(mb) mb.addEventListener('click',micPress);
+  var cf=document.getElementById('chatFin'); if(cf) cf.addEventListener('click',function(){ go('loader'); });
+}
+function showFix(on){ document.getElementById('fixSheet').classList.toggle('on',on); document.getElementById('fixDim').classList.toggle('on',on); }
+function micPress(){ if(!S.mic){ document.getElementById('micDlg').classList.add('on'); return; } advance(); }
+function advance(){ if(S.turn<TURNS.length-1){ S.turn++; paintChat(); if(TURNS[S.turn].fix) setTimeout(function(){ showFix(true); },450); } }
+document.getElementById('micYes').addEventListener('click',function(){ S.mic=true; document.getElementById('micDlg').classList.remove('on'); advance(); });
+document.getElementById('micNo').addEventListener('click',function(){ document.getElementById('micDlg').classList.remove('on'); });
+document.getElementById('fixOk').addEventListener('click',function(){ showFix(false); });
+document.getElementById('fixDim').addEventListener('click',function(){ showFix(false); });
+
+/* ================= everything downstream reads S ================= */
+function syncScreen(){
+  var li=L(), g=GOALK[S.goal];
+  document.querySelectorAll('#goalList .pk-row').forEach(function(b){ b.classList.toggle('on',b.dataset.v===S.goal); });
+  document.querySelectorAll('#levelList .pk-row').forEach(function(b){ b.classList.toggle('on',b.dataset.v===S.level); });
+  document.querySelectorAll('#paceGrid .pk-row').forEach(function(b){ b.classList.toggle('on',+b.dataset.v===S.pace); });
+  document.getElementById('paceChart').innerHTML=chartSVG();
+  document.getElementById('paceNote').innerHTML=t('pc.note',{m:S.pace,d:fmt(addD(Math.ceil(600/S.pace)))});
+  document.getElementById('qcHello').textContent=t('qc.hello',{n:S.name});
+  var first=g.top[0][1][0];
+  document.getElementById('loadLines').innerHTML=[t('ld.goal',{g:g.l[li]}),t('ld.lv',{l:S.level}),t('ld.pace',{m:S.pace,h:hrs()}),t('ld.top',{t:first})]
+    .map(function(x,i){ return '<div class="pk-ls" id="ls'+i+'"><span class="d"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>'+x+'</div>'; }).join('');
+  document.getElementById('poMeta').textContent=S.level+' · '+g.l[li];
+  document.getElementById('poDay').textContent=t('pc.min',{m:S.pace});
+  document.getElementById('poMonth').textContent=t('po.mo',{h:hrs()});
+  var tp=g.top[0], others=MORE.filter(function(m){ return m!==tp[0]; }).slice(0,3);
+  document.getElementById('poTopics').outerHTML;
+  var h='<div class="pk-acc" style="margin-top:14px"><div class="hd"><span class="pk-dot half"></span><div><b>'+tp[0]+'</b><span>'+t('po.topic',{n:1})+'</span></div></div>'+
+    tp[1].map(function(x,i){ return '<div class="it"><span class="pk-dot'+(i===0?' half':'')+'"></span>'+x+'</div>'; }).join('')+'</div>'+
+    others.map(function(o,i){ return '<div class="pk-acc" style="margin-top:10px"><div class="hd"><span class="pk-dot"></span><div><b>'+o+'</b><span>'+t('po.topic',{n:i+2})+'</span></div></div></div>'; }).join('');
+  document.getElementById('poTopics').innerHTML=h; document.getElementById('poTopics').className='';
+  document.getElementById('payChip').textContent=t('pw.chip',{e:g.e,g:g.l[li],m:S.pace,l:S.level});
+  document.getElementById('payH').innerHTML=t('pw.h',{g:g.p[li]});
+  document.querySelectorAll('#planList .pk-plan').forEach(function(b){ b.classList.toggle('on',b.dataset.v===S.plan); });
+  var yr=S.plan==='year';
+  document.getElementById('payTrust').textContent=yr?t('pw.trY'):t('pw.trQ');
+  document.getElementById('payCta').textContent=yr?t('pw.ctaY'):t('pw.ctaQ');
+  document.getElementById('payNotify').innerHTML=t('pw.notify',{d:fmt(addD(5))});
+  document.getElementById('paySw').classList.toggle('off',!S.notify);
+  document.getElementById('offH').innerHTML=t('of.h',{g:g.p[li]});
+  if(cur==='chat') paintChat();
+}
+
+/* ================= router ================= */
+var ORDER=['welcome','goal','level','pace','quick','chat','loader','payoff','paywall','offer'];
+var LABEL={welcome:'Welcome',goal:'Why',level:'Level',pace:'Pace + chart',quick:'Quick Chat',chat:'The chat',loader:'Loader',payoff:'Your plan',paywall:'Paywall',offer:'Offer on close'};
+var scr={}, hist=[], cur='welcome', loadT=null;
+document.querySelectorAll('.scr').forEach(function(s){ scr[s.dataset.id]=s; });
+function chrome(){ var l=S.theme==='dark' || !!scr[cur].dataset.light; document.getElementById('sbar').classList.toggle('light',l); document.getElementById('homebar').classList.toggle('light',S.theme==='dark'); }
+function enter(id){ chrome(); paintChips(); paintPanel(); clearInterval(loadT);
+  if(id==='loader') runLoader(); if(id==='chat'){ showFix(false); paintChat(); } }
+function go(id,o){ o=o||{}; if(id===cur) return; var from=scr[cur], to=scr[id];
+  if(!o.back) hist.push(cur);
+  if(from){ from.classList.remove('is-active'); if(!to.classList.contains('sheet') && !from.classList.contains('sheet')) from.classList.add('is-past'); }
+  Object.keys(scr).forEach(function(k){ if(k!==id&&k!==cur) scr[k].classList.remove('is-active'); });
+  if(to.classList.contains('sheet')) scr.paywall.classList.add('is-active');
+  to.classList.remove('is-past'); to.classList.add('is-active'); cur=id; enter(id); }
+function back(){ if(!hist.length) return; var prev=hist.pop(); scr[cur].classList.remove('is-active'); scr[prev].classList.remove('is-past'); scr[prev].classList.add('is-active'); cur=prev; enter(prev); }
+function jump(id){ var i=ORDER.indexOf(id);
+  Object.keys(scr).forEach(function(k){ scr[k].classList.add('nofx'); scr[k].classList.remove('is-active','is-past'); });
+  hist=ORDER.slice(0,i<0?0:i);
+  if(id==='offer') scr.paywall.classList.add('is-active');
+  if(id==='chat'){ S.turn=0; }
+  scr[id].classList.add('is-active'); cur=id;
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ Object.keys(scr).forEach(function(k){ scr[k].classList.remove('nofx'); }); }); });
+  syncScreen(); enter(id); }
+var chipsBuilt=false;
+function paintChips(){ var c=document.getElementById('chips');
+  if(!chipsBuilt){ chipsBuilt=true; ORDER.forEach(function(id){ var b=document.createElement('button'); b.className='chip'+(id==='offer'?' offer':''); b.textContent=LABEL[id]; b.dataset.id=id;
+    b.onclick=function(){ stopDemo(); jump(id); }; c.appendChild(b); }); }
+  c.querySelectorAll('.chip').forEach(function(b){ b.classList.toggle('on',b.dataset.id===cur); }); }
+function runLoader(){ var k=demo.on?0.45:1, p=0, c=document.getElementById('ringC'), n=document.getElementById('ringN'), cta=document.getElementById('loadCta');
+  cta.disabled=true; clearInterval(loadT);
+  loadT=setInterval(function(){ p+=2; if(p>=100){ p=100; clearInterval(loadT); cta.disabled=false; }
+    n.textContent=p; c.setAttribute('stroke-dashoffset',415-415*p/100);
+    for(var i=0;i<4;i++){ var el=document.getElementById('ls'+i); if(el) el.classList.toggle('on',p>=(i+1)*22); } },60*k); }
+
+/* ================= wiring ================= */
+document.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click',function(){ if(!b.disabled) go(b.dataset.go); }); });
+document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click',back); });
+document.querySelectorAll('#planList .pk-plan').forEach(function(b){ b.addEventListener('click',function(){ S.plan=b.dataset.v; syncScreen(); }); });
+document.getElementById('paySw').addEventListener('click',function(){ S.notify=!S.notify; syncScreen(); });
+document.getElementById('payClose').addEventListener('click',function(){ go('offer'); });
+document.getElementById('offClose').addEventListener('click',function(){ back(); });
+document.getElementById('offBack').addEventListener('click',function(){ back(); });
+document.getElementById('payCta').addEventListener('click',function(){ jump('welcome'); });
+document.getElementById('offerCta').addEventListener('click',function(){ jump('welcome'); });
+function setSeg(id,a,v){ document.querySelectorAll('#'+id+' button').forEach(function(b){ b.classList.toggle('on',b.dataset[a]===v); }); }
+function setLang(l){ S.lang=l; S0.lang=l; setSeg('segLang','lang',l); applyStatic(); syncScreen(); paintPanel(); }
+function setTheme(th){ S.theme=th; S0.theme=th; document.getElementById('phoneIn').classList.toggle('dark',th==='dark'); setSeg('segTheme','theme',th); chrome(); paintPanel(); }
+document.querySelectorAll('#segLang button').forEach(function(b){ b.addEventListener('click',function(){ stopDemo(); setLang(b.dataset.lang); }); });
+document.querySelectorAll('#segTheme button').forEach(function(b){ b.addEventListener('click',function(){ setTheme(b.dataset.theme); }); });
+
+/* ================= the 30-second walkthrough ================= */
+var demo={tok:0,on:false,t0:0,iv:null}, finger=document.getElementById('finger'), phoneIn=document.getElementById('phoneIn');
+function W(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+function cap(x){ document.getElementById('demoTxt').textContent=x; }
+async function tap(sel,tok){ if(demo.tok!==tok) throw 0; var el=document.querySelector(sel); if(!el) return;
+  var r=el.getBoundingClientRect(), p=phoneIn.getBoundingClientRect(), z=p.width/phoneIn.offsetWidth||1;
+  finger.style.left=((r.left-p.left+r.width/2)/z)+'px'; finger.style.top=((r.top-p.top+r.height/2)/z)+'px';
+  finger.classList.add('show'); await W(380); if(demo.tok!==tok) throw 0;
+  finger.classList.add('press'); await W(120); finger.classList.remove('press'); el.click(); await W(160); if(demo.tok!==tok) throw 0; }
+async function pause(ms,tok){ await W(ms); if(demo.tok!==tok) throw 0; }
+function startDemo(){ stopDemo(); var tok=++demo.tok; demo.on=true; demo.t0=Date.now();
+  var keep={lang:S.lang,theme:S.theme}; S=defaults(); S.lang=keep.lang; S.theme=keep.theme; S.goal='career'; applyStatic(); jump('welcome');
+  document.getElementById('demoCap').classList.remove('hidden');
+  demo.iv=setInterval(function(){ document.getElementById('demoProg').style.width=Math.min(100,(Date.now()-demo.t0)/290)+'%'; },200);
+  (async function(){ try{
+    cap('Your welcome screen, as it ships. No tracking dialog on top of the next one.'); await pause(1000,tok);
+    await tap('[data-id=welcome] .pk-btn',tok);
+    cap('Why they are learning. Say, travel.'); await pause(500,tok);
+    await tap('#goalList [data-v=travel]',tok); await pause(300,tok); await tap('[data-id=goal] .pk-btn',tok);
+    cap('Your level screen, with your 3D level codes.'); await pause(450,tok);
+    await tap('#levelList [data-v=A2]',tok); await pause(300,tok); await tap('[data-id=level] .pk-btn',tok);
+    cap('Minutes a day. Your chart recomputes as they choose.'); await pause(450,tok);
+    await tap('#paceGrid [data-v="10"]',tok); await pause(700,tok); await tap('[data-id=pace] .pk-btn',tok);
+    cap('Quick Chat. The mic is asked for only when they press it.'); await pause(600,tok);
+    await tap('[data-id=quick] .pk-btn',tok); await pause(500,tok);
+    await tap('#micBtn',tok); await pause(500,tok); await tap('#micYes',tok); await pause(700,tok);
+    cap('A real mistake, and your correction sheet.'); await tap('#micBtn',tok); await pause(1500,tok);
+    await tap('#fixOk',tok); await pause(300,tok); await tap('#micBtn',tok); await pause(500,tok); await tap('#chatFin',tok);
+    cap('The loader names their answers. No rating prompt in the middle.'); await pause(1900,tok);
+    await tap('#loadCta',tok);
+    cap('Their study plan, built from the travel goal.'); await pause(1100,tok); await tap('[data-id=payoff] .pk-btn',tok);
+    cap('The paywall names the plan, with 4.7 stars and 30M+ learners on top.'); await pause(1800,tok);
+    cap('They close it. Your $19.99 3-Month Promo, once.'); await tap('#payClose',tok); await pause(1900,tok);
+    cap('That is the flow. Tracking, notifications and the rating ask now come after purchase.'); finger.classList.remove('show'); await pause(1800,tok); stopDemo();
+  }catch(e){} })(); }
+function stopDemo(){ if(!demo.on) return; demo.tok++; demo.on=false; clearInterval(demo.iv); finger.classList.remove('show','press'); document.getElementById('demoCap').classList.add('hidden'); }
+document.getElementById('demoBtn').addEventListener('click',startDemo);
+document.getElementById('demoStop').addEventListener('click',stopDemo);
+phoneIn.addEventListener('pointerdown',function(e){ if(e.isTrusted && demo.on) stopDemo(); });
+</script>
+<script>
+/* ---- the short panel: hypothesis + potential outcome, nothing else ---- */
+var PANEL={
+welcome:{ctx:true,t:'Welcome to Praktika',
+ kept:'Your welcome screen — Skye full-bleed above the white sheet, the logo mark above the sheet, Get Started and Log in, and the Privacy Policy / Terms line. Skye is her full portrait from praktika.ai.'},
+goal:{n:2,t:'Name their goal on the paywall',
+ hyp:'Try keeping this question exactly as it is, <b>because the answer should come back as the paywall headline</b>: pick Career growth and the paywall says “your Career English plan”.',
+ kept:'Your five goals in your order, your grey rows, the 3D emoji in white circles, the round back button and the thin progress line.',
+ out:'CR +15–20%'},
+level:{ctx:true,t:'What’s your level of English?',
+ kept:'Untouched — your A1–C2 list with the chunky purple level codes and your exact wording. The level is printed again on the loader, the plan and the paywall.'},
+pace:{ctx:true,t:'How many minutes do you want to practice per day?',
+ kept:'Your projection chart as a working control: pick 30 minutes and the hours line, the curve, the plan and the paywall chip all move. It projects practice time only, which is arithmetic, never a fluency outcome.'},
+quick:{n:3,t:'Ask for permissions after the paywall',
+ hyp:'Try asking for the microphone the first time they press the mic, and moving tracking and notifications past the paywall, <b>because today tracking fires on screen 2 and the mic dialog lands on this screen before anyone has chosen to speak</b>.',
+ kept:'Your purple Quick Chat title, Skye’s video card with the 1 min chip, the greeting that uses their name, Let’s go! and Skip Quick chat.',
+ out:'CR +10–15%'},
+chat:{ctx:true,t:'The Quick Chat',
+ kept:'Untouched, and the strongest thing in the flow: a real conversation before paying, a mistake, and your correction sheet with “It is better to say” and “Explanation”. The lines are from your own App Store screenshots and praktika.ai. The mic dialog fires on the first press.'},
+loader:{n:5,t:'Take the rating request out of the loader',
+ hyp:'Try running this loader with no App Store rating prompt in the middle and the answers named as it fills, <b>because today the rating ask interrupts the highest-intent moment in the funnel, one screen before the price</b>. It moves to after the purchase.',
+ kept:'Your progress ring counting to 100 and the “Get my Personal Plan” button that unlocks at the end.',
+ out:'CR +8–12%'},
+payoff:{ctx:true,t:'Your study plan',
+ kept:'Your plan screen as it ships — the flag, “English ›”, level · goal, the Adjust plan pill and the topic list. The topics are your own: pick Travel and it opens on On the plane, Exploration, Travel Tips and Wanderlust.'},
+paywall:{n:2,t:'Name their goal on the paywall',
+ hyp:'Try “Get full access to your Travel English plan” with the goal, pace and level above it, <b>because the shipping headline says “your personal AI tutor” one screen after a plan that said Travel</b>.',
+ n2:4,t2:'Put 4.7 stars and 30M+ learners by the button',
+ hyp2:'Try your 4.7 stars from 165K ratings, 30M+ learners and 100K+ five-star reviews under the headline, <b>because today the only proof in the flow is one rating tile in the carousel</b>.',
+ out2:'CR +10–15%',
+ kept:'Your two plan cards, “1 week free then $99.99 annually”, “50x cheaper than a tutor”, the notify-me toggle, Start for Free and Restore purchase. The review is verbatim from your App Store page.',
+ out:'CR +15–20%'},
+offer:{n:1,t:'Offer your 3-month promo when they close',
+ hyp:'Try your 3-Month Promo as the only second chance, opened by the paywall’s X, <b>because today closing the paywall ends the flow, and $19.99 is a price you already list</b>. It sells the plan directly, with no trial claimed on it.',
+ kept:'Raven from praktika.ai in your video-card frame, your grey and purple plan card, your pill and your button. $19.99 for 3 months is $6.66 a month against the $12 a month on your 3-month card.',
+ out:'ARPU +10–15%'}
+};
+function outBlock(v){ return '<div class="pn-out"><div class="lab">Potential outcome · based on Adapty data</div><div class="v">'+v+'</div></div>'; }
+function paintPanel(){ var d=PANEL[cur]; if(!d) return; var h='';
+  if(d.ctx){ h+='<div class="pn-n ctx">Context · no change proposed</div><h3 class="pn-t">'+d.t+'</h3><div class="pn-kept">'+d.kept+'</div>'; }
+  else { h+='<div class="pn-n">Idea '+d.n+' of 5</div><h3 class="pn-t">'+d.t+'</h3><p class="pn-hyp">'+d.hyp+'</p>'+outBlock(d.out);
+    if(d.hyp2) h+='<div class="pn-sep"></div><div class="pn-n">Idea '+d.n2+' of 5</div><h3 class="pn-t">'+d.t2+'</h3><p class="pn-hyp" style="margin-top:12px">'+d.hyp2+'</p>'+outBlock(d.out2);
+    h+='<div class="pn-kept"><b>Your design, unchanged.</b> '+d.kept+'</div>'; }
+  if(S.lang!=='en') h+='<div class="pn-kept"><b>Language.</b> Screens are shown in '+(S.lang==='es'?'Spanish':'Brazilian Portuguese')+', as a learner from that market sees them while learning English. Translation is ours; store prices stay as published in US dollars, and the chat lines and the review stay verbatim.</div>';
+  if(S.theme==='dark') h+='<div class="pn-kept"><b>Dark mode.</b> No dark version of your onboarding is published, so this is our approximation of your palette.</div>';
+  h+='<div class="pn-foot">Ranges are Adapty’s expected effect from tests across 30,000+ subscription apps — not measured lift for Praktika. Prices, ratings, quotes and feature lines come from your own published material.</div>';
+  document.getElementById('panel').innerHTML=h; }
+
+function showView(v){ if(v!=='proto') stopDemo();
+  document.querySelectorAll('.view').forEach(function(x){ x.classList.remove('on'); }); document.getElementById('view-'+v).classList.add('on');
+  document.querySelectorAll('.nav-links button[data-view]').forEach(function(b){ b.classList.toggle('on',b.dataset.view===v); }); window.scrollTo(0,0); }
+document.querySelectorAll('[data-view]').forEach(function(b){ b.addEventListener('click',function(){ showView(b.dataset.view); }); });
+document.querySelectorAll('.idea[data-jump]').forEach(function(b){ b.addEventListener('click',function(){ showView('proto'); jump(b.dataset.jump); }); });
+document.querySelectorAll('[data-demo]').forEach(function(b){ b.addEventListener('click',function(){ showView('proto'); startDemo(); }); });
+applyStatic(); scr.welcome.classList.add('is-active'); syncScreen(); chrome(); paintChips(); paintPanel();
+if(/[?&]open=proto/.test(location.search)) showView('proto');
+</script>
+</body>
+</html>
